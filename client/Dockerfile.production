@@ -1,0 +1,15 @@
+# base image
+FROM node:16-alpine as builder
+WORKDIR /app
+COPY package.json .
+RUN npm install 
+COPY . .
+RUN npm run build
+
+FROM nginx
+
+# In production stage we are not making instant change,
+# So we can use the build file and run as a static site using nginx
+COPY --from=builder /app/build /usr/share/nginx/html
+# no need to specify starting command for nginx
+# when docker run nginx port is 80 => -p localPort:80

@@ -1,0 +1,1 @@
+export const SET_WINDOW_WIDTH = 'set_window_width';

@@ -18,6 +18,7 @@ app.post("/contact", (req, res)=>{
 	res.send("hello successful")
 })
 
+
 app.get("/home", (req, res)=>{
 	console.log("/home")
 	res.send("hello successful")
