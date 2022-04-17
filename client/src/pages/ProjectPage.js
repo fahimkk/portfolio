@@ -12,7 +12,7 @@ const ProjectPage = (props) => {
 	const projectItem = projectsList.filter((item, index)=> item.fileName===fileName)[0]
 	const [blog, setBlog] = useState("")
 	useEffect(() => {
-		import (`../assets/markdownFiles/blogs/${fileName}`)
+		import (`../assets/markdownFiles/projects/${fileName}`)
 			.then(res=>{
 				fetch(res.default)
 				.then(res =>res.text())

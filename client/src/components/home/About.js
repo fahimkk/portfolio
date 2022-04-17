@@ -15,7 +15,7 @@ class About extends PureComponent {
 				<AboutText/>	
 				<div className="flex items-center mt-4 gap-3">
 					<ReadMore/>
-					<div className="border-2 py-1 px-3 rounded-md flex items-center dark:text-slate-300">
+					<div className="flex md:text-base text-sm items-center text-teal-900 border-2 border-teal-900 dark:text-slate-400 dark:border-slate-400 py-1 px-3 rounded-md dark:hover:text-slate-300 dark:hover:border-slate-300 hover:text-teal-700 hover:border-teal-700">
 					<Link 
 						to="/files/fahim_resume.pdf"
 						download

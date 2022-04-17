@@ -1,0 +1,1 @@
+Write a post (in markdown) and push to github. Github actions will get triggered and this static site generator will generate the required html/css/image files etc, and create a .tgz archive file and then upload to the AWS machine where it will be picked up by the nginx web server.

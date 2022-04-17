@@ -51,6 +51,7 @@ const frontEnd = [
 	{lang: 'React', level:'Experienced'},
 	{lang: 'React-Native', level:'Experienced'},
 	{lang: 'Redux', level:'Experienced'},
+	{lang: 'Redux-Thunk', level:'Intermediate'},
 	{lang: 'CSS', level:'Intermediate'},
 	{lang: 'Bootstrap', level:'Intermediate'},
 	{lang: 'Tailwind', level:'Intermediate'},
@@ -65,6 +66,8 @@ const backEnd = [
 	{lang: 'Docker', level:'Intermediate'},
 	{lang: 'Node js', level:'Intermediate'},
 	{lang: 'MongoDB', level:'Basic'},
+	{lang: 'Nginx', level:'Intermediate'},
+	{lang: 'AWS', level:'S3, Route53, Ec2 and CloudFront'},
 ]
 class AboutPage extends Component {
 

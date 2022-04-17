@@ -7,7 +7,7 @@ class Project extends Component {
 			<Link to={`/project/${this.props.to}`}>
 			<div className={`bg-slate-300 rounded-xl shadow-lg  transition duration-500 
 					${this.props.type==='inline'?"flex 2xl:mx-64 mx-16 my-5"
-					:"md:w-80 m-5 pb-5 hover:scale-105"
+					:"md:w-72 h-96 overflow-hidden m-5 pb-5 hover:scale-105"
 					}
 				`}
 			>

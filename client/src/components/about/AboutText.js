@@ -8,11 +8,15 @@ function AboutText(props) {
 				:"md:mx-14 lg:mx-80 mx-5 text-center"}
 			`}
 		>
+			Hello! I am Fahim. I have been developing mobile and web applications for over 1 year. I'm Full-Stack Developer.
 
-			{"Mechanical Engineer by profession, But highly passionate and curious about the IT industries."
-			+ (props.showFullDescription ? "\n\nI worked in MEP feild for the past 3 years both in Qatar and India. During the Covid-19 lockdown I learned more about programming. Now I'm trying to switch into a software developer."
-			:"")
-			}
+			{props.showFullDescription ? 
+				<p className="mt-3">
+					I create responsive websites that are displayed on all devices desktop and smartphones.
+					And also developed Android App and released on Google Play Store.
+				</p>
+			:null}
+			
 		</p>
 	)
 }

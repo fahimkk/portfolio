@@ -11,6 +11,7 @@ const list = [
 ] 
 class RecentBlogs extends Component {
 	render() {
+		console.log("window width recent blogs: ", this.props.windowWidth)
 		return (
 			<div className="flex flex-col items-center py-14 ">
 				<SectionTitle
@@ -19,8 +20,8 @@ class RecentBlogs extends Component {
 				/>
 					<Carousel
 						itemsToShow={
-							['2xl'].includes(this.props.windowWidth) ? 3
-							:(this.props.windowWidth==="xl"?2:1)
+							['2xl', 'xl'].includes(this.props.windowWidth) ? 3
+							:(this.props.windowWidth==="lg"?2:1)
 						}
 						showArrows={false}
 						enableAutoPlay={true}
