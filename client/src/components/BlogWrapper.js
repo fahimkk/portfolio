@@ -9,7 +9,7 @@ function BlogWrapper({title, writerDetails, content}) {
 				<div className="md:block hidden col-span-1 mt-8">
 					{writerDetails}	
 				</div>
-				<div className="col-span-5 md:col-span-4 md:mx-10 prose dark:prose-invert max-w-none overflow-hidden md:mt-5">
+				<div className="col-span-5 md:col-span-4 md:mx-10 prose dark:prose-invert max-w-none overflow-hidden mt-5">
 					{content}
 				</div>
 			</div>

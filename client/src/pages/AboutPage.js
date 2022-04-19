@@ -64,7 +64,7 @@ const backEnd = [
 	{lang: 'Redis', level:'Experienced'},
 	{lang: 'Sqlalchemy', level:'Experienced'},
 	{lang: 'Docker', level:'Intermediate'},
-	{lang: 'Node js', level:'Intermediate'},
+	{lang: 'Node js', level:'Basic'},
 	{lang: 'MongoDB', level:'Basic'},
 	{lang: 'Nginx', level:'Intermediate'},
 	{lang: 'AWS', level:'S3, Route53, Ec2 and CloudFront'},

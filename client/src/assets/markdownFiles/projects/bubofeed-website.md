@@ -1,4 +1,4 @@
-BuboFeed website is proposed to be a static website for our Andorid App BuboFeed, and need to integrate wordpress for blogs related to movies and foods. This site will provide easy and instant idea about the application.
+BuboFeed website is proposed to be a static website for our Andorid App BuboFeed https://bubofeed.com, and integrated wordpress for blogs related to movies and foods like https://bubofeed.com/blogs. This site will provide easy and instant idea about the application.
 
 ## Technologies
 
