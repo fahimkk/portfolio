@@ -17,14 +17,14 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Docker Hub Push
-        env:
+      #- name: Docker Hub Push
+      #  env:
           # Docker hub repository name
-          REPO: react-portfolio
-        run: |
-          docker build -t $REPO -f ./client/Dockerfile.local ./client/.
-          docker tag $REPO:latest ${{ secrets.DOCKER_USER }}/$REPO:latest
-          docker push ${{ secrets.DOCKER_USER }}/$REPO
+      #    REPO: react-portfolio
+      #  run: |
+      #    docker build -t $REPO -f ./client/Dockerfile.local ./client/.
+      #    docker tag $REPO:latest ${{ secrets.DOCKER_USER }}/$REPO:latest
+      #    docker push ${{ secrets.DOCKER_USER }}/$REPO
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -40,9 +40,12 @@ jobs:
         run: |
           docker login
           sudo docker pull ${{ secrets.DOCKER_USER }}/$REPO
+          echo "docker ps all"
           sudo docker ps --all
+          echo "docker images"
           sudo docker images
           # sudo docker stop portfolio_frontend
           # sudo docker rm portfolio_frontend
           sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
+          ls
           cd ~/portfolio
