@@ -54,9 +54,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
-            # docker login
-            #docker pull ${{ secrets.DOCKER_USER }}/$REPO
-            #docker stop portfolio_frontend
-            #docker rm portfolio_frontend
-            #sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
-            sudo docker run --detach --name portfolio_frontend -p 3000:3000 portfolio_frontend
+            docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+            docker pull ${{ secrets.DOCKER_USER }}/$REPO
+            docker stop portfolio_frontend
+            docker rm portfolio_frontend
+            sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
