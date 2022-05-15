@@ -49,13 +49,14 @@ jobs:
           REPO: react-portfolio
         uses: appleboy/ssh-action@master
         with:
+          # host - Public DNS in aws ssh connection
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
             sudo docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-            sudo docker pull ${{ secrets.DOCKER_USER }}/$REPO
+            sudo docker pull ${{ secrets.DOCKER_USER }}/react-portfolio
             sudo docker stop portfolio_frontend
             sudo docker rm portfolio_frontend
-            sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
+            sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/react-portfolio
