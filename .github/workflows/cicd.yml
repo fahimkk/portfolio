@@ -29,7 +29,7 @@ jobs:
         # Docker hub repository name
         REPO: react-portfolio
       run: |
-        docker build -t $REPO -f Dockerfile.local ./client/.
+        docker build -t $REPO -f ./client/Dockerfile.local ./client/.
         docker tag $REPO:latest ${{secrets.DOCKER_USER}}/$REPO:latest
         docker push ${{secrets.DOCKER_USER}}/$REPO
         
