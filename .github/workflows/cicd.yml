@@ -11,15 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Docker Hub Login
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: Docker Hub Login
+      #  uses: docker/login-action@v2
+      #  with:
+      #    username: ${{ secrets.DOCKER_USER }}
+      #    password: ${{ secrets.DOCKER_PASSWORD }}
 
       #- name: Docker Hub Push
       #  env:
-          # Docker hub repository name
+      # Docker hub repository name
       #    REPO: react-portfolio
       #  run: |
       #    docker build -t $REPO -f ./client/Dockerfile.local ./client/.
@@ -32,20 +32,23 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
-          
+
       - name: Pull docker image from Docker Hub
         env:
           # Docker hub repository name
           REPO: react-portfolio
         run: |
-          docker login
-          sudo docker pull ${{ secrets.DOCKER_USER }}/$REPO
-          echo "docker ps all"
-          sudo docker ps --all
-          echo "docker images"
-          sudo docker images
+          # docker login
+          # sudo docker pull ${{ secrets.DOCKER_USER }}/$REPO
+          echo "==== docker ps --all"
+          docker ps --all
+          echo "==== docker images"
+          docker images
           # sudo docker stop portfolio_frontend
           # sudo docker rm portfolio_frontend
-          sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
+          # sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
+          echo "==== ls"
           ls
+          echo "==== pwd"
+          pwd
           cd ~/portfolio
