@@ -33,7 +33,7 @@ jobs:
       #    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       #    aws-region: ap-south-1
 
-      - name: Docker pull & Run from Hub
+      - name: Docker pull & Run In EC2
         uses: appleboy/ssh-action@master
         env:
           REPO: react-portfolio
@@ -41,7 +41,10 @@ jobs:
         with:
           # host - Public DNS in aws ssh connection
           host: ${{ secrets.AWS_HOST }}
+          # username is the part before @ in host connection using ssh
           username: ${{ secrets.AWS_USER }}
+          # add private key to github secrets
+          # add public key to ~/.ssh/authorized_keys by using text editor
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: REPO
           script: |
