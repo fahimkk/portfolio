@@ -40,6 +40,8 @@ jobs:
         run: |
           docker login
           docker pull ${{ secrets.DOCKER_USER }}/$REPO
+          sudo docker ps --all
+          sudo docker images
           # sudo docker stop portfolio_frontend
           # sudo docker rm portfolio_frontend
           sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
