@@ -53,7 +53,7 @@ jobs:
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_PEM_KEY }}
           envs: GITHUB_SHA
-          scripts: |
+          script: |
             docker login
             docker pull ${{ secrets.DOCKER_USER }}/$REPO
             docker stop portfolio_frontend
