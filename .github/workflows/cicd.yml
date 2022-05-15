@@ -54,7 +54,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
-            #docker login
+            # docker login
             #docker pull ${{ secrets.DOCKER_USER }}/$REPO
             #docker stop portfolio_frontend
             #docker rm portfolio_frontend
