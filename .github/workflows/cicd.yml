@@ -34,18 +34,18 @@ jobs:
       #    aws-region: ap-south-1
 
       - name: Docker pull & Run from Hub
-        env:
-          REPO: react-portfolio
-          # Docker hub repository name
+        # env:
+        #  REPO: react-portfolio
+        # Docker hub repository name
         with:
           # host - Public DNS in aws ssh connection
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: REPO
+          #envs: REPO
           script: |
             sudo docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-            sudo docker pull ${{ secrets.DOCKER_USER }}/$REPO
+            sudo docker pull ${{ secrets.DOCKER_USER }}/react-portfolio
             sudo docker stop portfolio_frontend
             sudo docker rm portfolio_frontend
-            sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
+            sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/react-portfolio
