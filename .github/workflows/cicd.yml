@@ -11,20 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      #- name: Docker Hub Login
-      #  uses: docker/login-action@v2
-      #  with:
-      #    username: ${{ secrets.DOCKER_USER }}
-      #    password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker Hub Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      #- name: Docker Hub Push
-      #  env:
-      #    REPO: react-portfolio
-      # Docker hub repository name
-      #  run: |
-      #    docker build -t $REPO -f ./client/Dockerfile.local ./client/.
-      #    docker tag $REPO:latest ${{ secrets.DOCKER_USER }}/$REPO:latest
-      #    docker push ${{ secrets.DOCKER_USER }}/$REPO
+      - name: Docker Hub Push
+        env:
+          REPO: react-portfolio
+          # Docker hub repository name
+        run: |
+          docker build -t $REPO -f ./client/Dockerfile.local ./client/.
+          docker tag $REPO:latest ${{ secrets.DOCKER_USER }}/$REPO:latest
+          docker push ${{ secrets.DOCKER_USER }}/$REPO
 
       #- name: Configure AWS credentials
       #  uses: aws-actions/configure-aws-credentials@v1
@@ -34,18 +34,19 @@ jobs:
       #    aws-region: ap-south-1
 
       - name: Docker pull & Run from Hub
-        # env:
-        #  REPO: react-portfolio
-        # Docker hub repository name
+        uses: appleboy/ssh-action@master
+        env:
+          REPO: react-portfolio
+          # Docker hub repository name
         with:
           # host - Public DNS in aws ssh connection
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: GITHUB_SHA
+          envs: REPO
           script: |
             sudo docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-            sudo docker pull ${{ secrets.DOCKER_USER }}/react-portfolio
+            sudo docker pull ${{ secrets.DOCKER_USER }}/$REPO
             sudo docker stop portfolio_frontend
             sudo docker rm portfolio_frontend
-            sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/react-portfolio
+            sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
