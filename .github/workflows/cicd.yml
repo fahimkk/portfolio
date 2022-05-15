@@ -26,29 +26,36 @@ jobs:
       #    docker tag $REPO:latest ${{ secrets.DOCKER_USER }}/$REPO:latest
       #    docker push ${{ secrets.DOCKER_USER }}/$REPO
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+      #- name: Configure AWS credentials
+      #  uses: aws-actions/configure-aws-credentials@v1
+      #  with:
+      #    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #    aws-region: ap-south-1
 
-      - name: Pull docker image from Docker Hub
+      #- name: Pull docker image from Docker Hub
+      #  env:
+      # Docker hub repository name
+      #    REPO: react-portfolio
+      #  run: |
+      # docker login
+      # docker pull ${{ secrets.DOCKER_USER }}/$REPO
+      # docker stop portfolio_frontend
+      # docker rm portfolio_frontend
+      # docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
+
+      - name: Docker pull & Run from Hub
         env:
-          # Docker hub repository name
           REPO: react-portfolio
-        run: |
-          # docker login
-          # sudo docker pull ${{ secrets.DOCKER_USER }}/$REPO
-          echo "==== docker ps --all"
-          docker ps --all
-          echo "==== docker images"
-          docker images
-          # sudo docker stop portfolio_frontend
-          # sudo docker rm portfolio_frontend
-          # sudo docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
-          echo "==== ls "
-          ls
-          echo "==== pwd"
-          pwd
-          cd ~/portfolio
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_PEM_KEY }}
+          envs: GITHUB_SHA
+          scripts: |
+            docker login
+            docker pull ${{ secrets.DOCKER_USER }}/$REPO
+            docker stop portfolio_frontend
+            docker rm portfolio_frontend
+            docker run --detach --name portfolio_frontend -p 3000:3000 ${{ secrets.DOCKER_USER }}/$REPO
