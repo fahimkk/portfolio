@@ -38,7 +38,7 @@ jobs:
           # Docker hub repository name
           REPO: react-portfolio
         run: |
-          sudo docker login
+          docker login
           sudo docker pull ${{ secrets.DOCKER_USER }}/$REPO
           sudo docker ps --all
           sudo docker images
