@@ -8,7 +8,7 @@ function AboutText(props) {
 				:"md:mx-14 lg:mx-80 mx-5 text-center"}
 			`}
 		>
-			Hello! I am Fahim. I have been developing mobile and web applications for over 1 year. I'm Full-Stack Developer.
+			Hello!! I am Fahim. I have been developing mobile and web applications for over 1 year. I'm Full-Stack Developer.
 
 			{props.showFullDescription ? 
 				<p className="mt-3">
