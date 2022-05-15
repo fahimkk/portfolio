@@ -11,20 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Docker Hub Login
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      #- name: Docker Hub Login
+      #  uses: docker/login-action@v2
+      #  with:
+      #    username: ${{ secrets.DOCKER_USER }}
+      #    password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Docker Hub Push
-        env:
-          REPO: react-portfolio
-          # Docker hub repository name
-        run: |
-          docker build -t $REPO -f ./client/Dockerfile.local ./client/.
-          docker tag $REPO:latest ${{ secrets.DOCKER_USER }}/$REPO:latest
-          docker push ${{ secrets.DOCKER_USER }}/$REPO
+      #- name: Docker Hub Push
+      #  env:
+      #    REPO: react-portfolio
+      # Docker hub repository name
+      #  run: |
+      #    docker build -t $REPO -f ./client/Dockerfile.local ./client/.
+      #    docker tag $REPO:latest ${{ secrets.DOCKER_USER }}/$REPO:latest
+      #    docker push ${{ secrets.DOCKER_USER }}/$REPO
 
       #- name: Configure AWS credentials
       #  uses: aws-actions/configure-aws-credentials@v1
