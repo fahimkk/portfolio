@@ -1,12 +1,12 @@
-version: "3.9"
+version: "3.3"
 
 services:
   frontend:
     build:
-      context: ./frontend
+      context: ./client
+      # dockerfile: Dockerfile.production
       dockerfile: Dockerfile.local
-    network_mode: "host"
-  backend:
-    build:
-      context: ./backend
-    network_mode: "host"
+    ports:
+            #- "3000:80"
+      - "3000:3000"
+
